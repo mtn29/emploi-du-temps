@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+    <title>Emploi du temps</title>
+  </head>
+  <body>
+    <main class="container-fluid container-lg py-3">
+      <nav
+        class="d-flex d-lg-none gap-2 overflow-auto mb-3"
+        aria-label="Choisir un jour"
+      >
+        <button
+          class="btn btn-primary flex-shrink-0"
+          type="button"
+          data-select-day="lundi"
+          aria-pressed="true"
+        >
+          Lundi
+        </button>
+        <button
+          class="btn btn-outline-primary flex-shrink-0"
+          type="button"
+          data-select-day="mardi"
+          aria-pressed="false"
+        >
+          Mardi
+        </button>
+        <button
+          class="btn btn-outline-primary flex-shrink-0"
+          type="button"
+          data-select-day="mercredi"
+          aria-pressed="false"
+        >
+          Mercredi
+        </button>
+        <button
+          class="btn btn-outline-primary flex-shrink-0"
+          type="button"
+          data-select-day="jeudi"
+          aria-pressed="false"
+        >
+          Jeudi
+        </button>
+        <button
+          class="btn btn-outline-primary flex-shrink-0"
+          type="button"
+          data-select-day="vendredi"
+          aria-pressed="false"
+        >
+          Vendredi
+        </button>
+        <button
+          class="btn btn-outline-primary flex-shrink-0"
+          type="button"
+          data-select-day="samedi"
+          aria-pressed="false"
+        >
+          Samedi
+        </button>
+      </nav>
+      <div class="" >
+        <table class="table table-bordered text-center align-middle">
+          <thead>
+            <tr>
+             <th scope="col" class="text-nowrap" style="width: 110px; min-width: 110px;">Heure / jour</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="lundi">Lundi</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="mardi">Mardi</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="mercredi">Mercredi</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="jeudi">Jeudi</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="vendredi">Vendredi</th>
+             <th scope="col" class="d-none d-lg-table-cell" data-day="samedi">Samedi</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <th scope="row">08h-09h</th>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="lundi">English</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="mardi">Recherche operationnelle</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="mercredi">BD</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="jeudi">TPE</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="vendredi">Traitement du signal</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="samedi">PPP</td>
+            </tr>
+            <tr><th scope="row">16h-17h</th></tr>
+            <tr><th scope="row">17h-18h</th></tr>
+            <tr><th scope="row">18h-19h</th></tr>
+
+              <th>12h-13h</th>
+            </tr>
+            <tr>
+              <th>13h-14h</th>
+            </tr>
+            <tr>
+              <th>14h-15h</th>
+            </tr>
+            <tr>
+              <th scope="row">15h-16h</th>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="lundi">UML</td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="mardi">
+                T.C.F
+              </td>
+              <td
+                rowspan="4"
+                class="d-none d-lg-table-cell"
+                data-day="mercredi"
+              >
+                TPE
+              </td>
+              <td rowspan="4" class="d-none d-lg-table-cell" data-day="jeudi">
+                TPE
+              </td>
+              <td
+                rowspan="4"
+                class="d-none d-lg-table-cell"
+                data-day="vendredi"
+              >
+                UX Design
+              </td>
+              <td
+                rowspan="4"
+                class="d-none d-lg-table-cell"
+                data-day="samedi"
+              ></td>
+              
+            </tr>
+            <tr>
+              <th scope="row">16h-17h</th>
+            </tr>
+            <tr>
+              <th scope="row">17h-18h</th>
+            </tr>
+            <tr>
+              <th scope="row">18h-19h</th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <script>
+      const dayButtons = document.querySelectorAll("[data-select-day]");
+      const dayCells = document.querySelectorAll("[data-day]");
+
+      dayButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const selectedDay = button.dataset.selectDay;
+          dayCells.forEach((cell) =>
+            cell.classList.toggle("d-none", cell.dataset.day !== selectedDay),
+          );
+          dayButtons.forEach((dayButton) => {
+            const selected = dayButton === button;
+            dayButton.classList.toggle("btn-primary", selected);
+            dayButton.classList.toggle("btn-outline-primary", !selected);
+            dayButton.setAttribute("aria-pressed", String(selected));
+          });
+        });
+      });
+      dayCells.forEach((cell) => {
+        cell.classList.toggle("d-none", cell.dataset.day !== "lundi");
+      });
+    </script>
+  </body>
+</html>
